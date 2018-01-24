@@ -3,7 +3,7 @@
 	<meta charset="utf-8">
 	<title>futurebots.cn</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/index.css"> -->
 </head>
 <body>
 	<header>
@@ -18,6 +18,7 @@
 	</header>
 
 	<ul class="roomList">
+		<li> <a href="javascript:changeRoom(19967385);">测试</a> </li>
 		<li> <a href="javascript:changeRoom(20805960);">王艳丹</a> </li>
 		<li> <a href="javascript:changeRoom(20716567);">王天</a></li>
 		<li> <a href="javascript:changeRoom(20876173);">何英源</a></li>
@@ -27,22 +28,23 @@
 	</ul>
 
 	<ul class="messagePannel">
-		<li class="in">
-			<div>
+		<li class="divid_line">历史聊天记录</li>
+		<!-- <li class="in">
+			<div class="avater">
 				<img src="">
 			</div>
-			<span>昵称</span>
+			<span class="nick">昵称</span>
 			<span>时间</span>
 			<p>这是发送的内容</p>
 		</li>
 		<li class="out">
-			<div>
+			<div class="avater">
 				<img src="">
 			</div>
-			<span>昵称</span>
+			<span class="nick">昵称</span>
 			<span>时间</span>
 			<p>这是发送的内容</p>
-		</li>
+		</li> -->
 	</ul>
 
 	<textarea class="textContent"></textarea>
@@ -50,8 +52,37 @@
 
 	<script type="text/javascript" src="js/NIM_Web_SDK_v4.7.1.js"></script>
 	<script type="text/javascript" src="js/config.js"></script>
-	<script type="text/javascript" src="js/nim.js"></script>
+	<!-- <script type="text/javascript" src="js/nim.js"></script>
 	<script type="text/javascript" src="js/chatroom.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/index.js"></script> -->
+
+	<script type="text/javascript">
+		(function(){
+			//动态加载css
+			var styles = ['css/index.css'];
+			for (var i = 0; i < styles.length; i++) {
+				link = document.createElement("link");
+				link.rel = "stylesheet";
+				link.type = "text/css"
+				link.href = styles[i] + "?" + (new Date()).valueOf();
+				document.head.appendChild(link);
+			}
+
+
+			//动态加载js，防止浏览器缓存
+			var scriptScrs = ['js/nim.js',
+								'js/chatroom.js',
+								'js/index.js'];
+			var script = null;
+			for (var i = 0; i < scriptScrs.length; i++) {
+				script = document.createElement("script");
+				script.type = "text/javascript";
+				script.src = scriptScrs[i] + "?" + (new Date()).valueOf();
+				document.body.appendChild(script);
+			}
+
+			
+		})()
+	</script>
 </body>
 </html>

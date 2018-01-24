@@ -89,7 +89,6 @@ function init() {
   document.querySelector(".onlineNum").innerHTML = data.chatroomOnlineMemberNum;
   document.querySelector(".avater").querySelector("img").src = data.avatar;
   document.querySelector(".nick").innerHTML = data.usernick;
-
 }
 
 //事件绑定
@@ -104,6 +103,14 @@ function bind() {
       sendText();
     }
   }
+
+  //选择房间
+  var analys = document.querySelectorAll(".roomList > li");
+  for (var i = 0; i < analys.length; i++) {
+    analys[i].onclick = function() {
+      selectChatroom(this);
+    }
+  }
 }
 
 //发送文本消息
@@ -116,6 +123,9 @@ function sendText() {
   var msg = chatroom.sendText({
     text: text,
     done: function (error, msg) {
+      //绘制消息界面
+      buildTextMsg(msg);
+      //清空输入框
       document.querySelector(".textContent").value = "";
     }
   });
@@ -137,7 +147,25 @@ function doNotification(msg) {
 
 //处理文本消息
 function buildTextMsg(msg) {
-
+  var li = document.createElement("li");
+  li.className = msg.flow;
+  if (msg.flow == "in") {
+    li.innerHTML = ['<div class="avater">',
+                      '<img src="' + msg.fromAvatar + '">',
+                    '</div>',
+                    '<span class="nick">' + msg.fromNick + '</span>',
+                    '<span>' + formatTime(msg.time) + '</span>',
+                    '<p>' + msg.text +'</p>'].join("");
+  }else{
+    li.innerHTML = ['<div class="avater">',
+                      '<img src="' + msg.fromAvatar + '">',
+                    '</div>',
+                    '<span class="nick">' + msg.fromNick + '</span>',
+                    '<span>' + formatTime(msg.time) + '</span> <br />',
+                    '<p>' + msg.text +'</p>'].join("");
+  }
+  document.querySelector(".messagePannel").appendChild(li);
+  li.scrollIntoView(true)
 }
 
 //刷新在线人数
@@ -146,6 +174,15 @@ function refreshOnlineMemberNum(num) {
   document.querySelector(".onlineNum").innerHTML = data.chatroomOnlineMemberNum;
 }
 
+//选择房间
+function selectChatroom(li) {
+  var analys = document.querySelectorAll(".roomList > li");
+  for (var i = 0; i < analys.length; i++) {
+    analys[i].className = "";
+  }
+
+  li.className = "selected";
+}
 
 
 

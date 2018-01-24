@@ -12,11 +12,31 @@
 body{
 	padding: 5px;
 }
+li{
+	list-style-type: none;
+}
+a{
+	text-decoration: none;
+}
+header{
+	font-size: 14px;
+}
+header span{
+	margin-right: 10px;
+}
+.roomList{
+	margin-top: 15px;
+}
+.roomList li{
+	display: inline-block;
+}
+
 .textContent{
 	width: 100%;
 	height: 100px;
 	resize: none;
 	border:1px solid rgba(0, 0, 0, 0.3);
+	margin-top: 5px;
 }
 .sendTextBtn{
 	padding: 8px 20px;
@@ -32,12 +52,118 @@ body{
 	height: 35px;
 	border-radius: 50%;
 	overflow: hidden;
+	display: inline-block;
 }
 .avater img{
 	width: 100%;
 	height: auto;
 }
-.messagePannel li {
-	border: 1px solid rgba(0, 0, 0, 0.2);
+.messagePannel{
 	padding: 5px;
+    height: 500px;
+    overflow: auto;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
 }
+.divid_line{
+	font-size: 12px;
+	text-align: center;
+}
+.divid_line:before,
+.divid_line:after
+{
+	content: "";
+	display: inline-block;
+	width: 35%;
+	height: 1px;
+	border-bottom: 1px dashed rgba(0, 0, 0, 0.2); 
+	float: left;
+}
+.divid_line:after{
+	float: right;
+}
+.messagePannel li {
+	width: 100%;
+	padding: 5px;
+	margin-bottom: 10px;
+	border-radius: 4px;
+}
+.messagePannel li.in{
+	float: left;
+}
+.nick{
+	background-color: rgba(0, 188, 212, 0.18);
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+.messagePannel li span {
+    vertical-align:  8px;
+    font-size:  12px;
+    margin-left:  5px;
+}
+.messagePannel li p{
+	background-color: rgba(0, 0, 0, 0.05);
+    display: table;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-left: 40px;
+    max-width: 80%;
+}
+.messagePannel li.out,
+.messagePannel li.out span,
+.messagePannel li.out .avater
+{
+	float: right;
+}
+.messagePannel li.out p {
+	float: right;
+    margin-left: 0px;
+    margin-right: 5px;
+}
+.messagePannel li.out span{
+	margin-right: 5px;
+}
+
+ /*滚动条样式*/
+.messagePannel::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+    height: 4px;
+}
+.messagePannel::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.2);
+}
+.messagePannel::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 0;
+    background: rgba(0,0,0,0.1);
+}
+
+.roomList li.selected{
+	background-color: #00BCD4;
+    padding: 0px 4px;
+	border-radius: 3px;
+}
+.roomList li.selected a{
+	color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

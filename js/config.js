@@ -1,5 +1,5 @@
 /*
-	配置文件
+	配置文件 & 工具方法
 	20180122-oneminuter
 */
 var Config = {
@@ -28,4 +28,18 @@ function setSessionStorage(key, value) {
 //获取sessionStorage
 function getSessionStorage(key) {
 	return sessionStorage.getItem(key);
+}
+
+//时间格式化
+function formatTime(timestamp) {
+	t = new Date(timestamp);
+	y = t.getFullYear();
+	m = t.getMonth();
+	d = t.getDate();
+
+	h = t.getHours();
+	min = t.getMinutes();
+	s = t.getSeconds();
+
+	return y + "-" + (m+1) + "-" + d + " " + h + ":" + min + ":" + s ;
 }
