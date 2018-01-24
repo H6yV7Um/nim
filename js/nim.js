@@ -13,7 +13,8 @@ var nim = SDK.NIM.getInstance({
 });
 function onConnect() {
     console.log('连接成功');
-    getChatroomAddress()
+    //设置连接成功标志
+    data.nimConnectStatus = true;
 }
 function onWillReconnect(obj) {
     // 此时说明 SDK 已经断开连接, 请开发者在界面上提示用户连接已断开, 而且正在重新建立连接
@@ -25,6 +26,10 @@ function onDisconnect(error) {
     // 此时说明 SDK 处于断开状态, 开发者此时应该根据错误码提示相应的错误信息, 并且跳转到登录页面
     console.log('丢失连接');
     console.log(error);
+    
+    //设置连接成功标志
+    data.nimConnectStatus = true;
+
     if (error) {
         switch (error.code) {
         // 账号或者密码错误, 请跳转到登录页面并提示错误

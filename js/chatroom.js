@@ -1,12 +1,12 @@
 // 非匿名方式登录
 var chatroom = null;
-function initChatroom(){
+function initChatroom(roomid){
   console.log("初始化聊天室");
   chatroom = SDK.Chatroom.getInstance({
     appKey: Config.appKey,
     account: Config.account,
     token: Config.token,
-    chatroomId: Config.roomid,
+    chatroomId: roomid,
     chatroomAddresses: data.chatroomIdAddress,
     onconnect: onChatroomConnect,
     onerror: onChatroomError,
@@ -19,6 +19,21 @@ function initChatroom(){
 function onChatroomConnect(chatroom) {
   console.log('进入聊天室', chatroom);
 
+  //设置聊天室连接状态
+  data.chatroomConnectStatus = true;
+  //在线人数
+  data.chatroomOnlineMemberNum = chatroom.chatroom.onlineMemberNum;
+  //直播房间名
+  data.chatroomName = chatroom.chatroom.custom;
+  //进入直播间的用户昵称
+  data.usernick = chatroom.member.nick;
+  //进入直播间的用户头像
+  data.avatar = chatroom.member.avatar;
+  //聊天室房间号
+  data.chatroomId = chatroom.chatroom.id;
+
+  //界面初始化
+  init()
   //事件绑定
   bind()
 }
@@ -29,6 +44,10 @@ function onChatroomWillReconnect(obj) {
 function onChatroomDisconnect(error) {
   // 此时说明 `SDK` 处于断开状态, 开发者此时应该根据错误码提示相应的错误信息, 并且跳转到登录页面
   console.log('连接断开', error);
+
+  //设置聊天室连接状态
+  data.chatroomConnectStatus = true;
+
   if (error) {
     switch (error.code) {
     // 账号或者密码错误, 请跳转到登录页面并提示错误
@@ -47,13 +66,43 @@ function onChatroomError(error, obj) {
 }
 function onChatroomMsgs(msgs) {
   console.log('收到聊天室消息', msgs);
+  for(var i = 0; i < msgs.length; i++) {
+    switch(msgs[i].type) {
+      //系统消息
+      case "notification":
+        doNotification(msgs[i]);
+        break;
+      case "text":
+        buildTextMsg(msgs[i]);
+        break;
+      default:
+        console.log("收到消息类型：", msgs[i].type, msgs[i]);
+    }
+  }
+}
+
+///////////////////////////////////////////////////////////////
+
+//界面初始化
+function init() {
+  document.querySelector(".roomCustom").innerHTML = data.chatroomName;
+  document.querySelector(".onlineNum").innerHTML = data.chatroomOnlineMemberNum;
+  document.querySelector(".avater").querySelector("img").src = data.avatar;
+  document.querySelector(".nick").innerHTML = data.usernick;
+
 }
 
 //事件绑定
 function bind() {
   //发送按钮
   document.querySelector(".sendTextBtn").onclick = function () {
-    sendText()
+    sendText();
+  }
+  //键盘发送
+  document.onkeyup = function(event) {
+    if (event.keyCode == 13 && event.ctrlKey){
+      sendText();
+    }
   }
 }
 
@@ -67,15 +116,35 @@ function sendText() {
   var msg = chatroom.sendText({
     text: text,
     done: function (error, msg) {
-      console.log('发送聊天室' + msg.type + '消息' + (!error?'成功':'失败') + ', id=' + msg.idClient, error, msg);
       document.querySelector(".textContent").value = "";
     }
   });
 }
 
+//系统消息处理
+function doNotification(msg) {
+  switch(msg.attach.type) {
+    case "memberExit":
+      refreshOnlineMemberNum(-1);
+      break;
+    case "memberEnter":
+      refreshOnlineMemberNum(1);
+      break;
+    default:
+      console.log("收到系统消息类型:", msg.attach, msg)
+  }
+}
 
+//处理文本消息
+function buildTextMsg(msg) {
 
+}
 
+//刷新在线人数
+function refreshOnlineMemberNum(num) {
+  data.chatroomOnlineMemberNum += num;
+  document.querySelector(".onlineNum").innerHTML = data.chatroomOnlineMemberNum;
+}
 
 
 

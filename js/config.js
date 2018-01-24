@@ -12,12 +12,12 @@ var Config = {
 	// roomid:"20788912",
 	//朱靳
 	// roomid:"20926447",
-	//王凯峰
+	//王天
 	// roomid:"20716567",
 	//方志坚
 	// roomid:"20936126"
 	//何英源
-	roomid:"20876173"
+	// roomid:"20876173"
 }
 
 //设置sessionStorage

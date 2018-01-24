@@ -27,3 +27,17 @@ body{
 .sendTextBtn:hover{
 	background-color: #03A9F4;
 }
+.avater{
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.avater img{
+	width: 100%;
+	height: auto;
+}
+.messagePannel li {
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	padding: 5px;
+}

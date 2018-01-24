@@ -6,15 +6,42 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
+	<header>
+		<span>当前直播间：<i class="roomCustom">**</i>	 </span>
+		<span>在线人数：<i class="onlineNum">**</i>人</span>
+
+		<div class="avater">
+			<img src="">
+		</div>
+		<span class="nick">**</span>
+		<a href="javascript:loginAndlogout();">登录</a>
+	</header>
+
+	<ul class="roomList">
+		<li> <a href="javascript:changeRoom(20805960);">王艳丹</a> </li>
+		<li> <a href="javascript:changeRoom(20716567);">王天</a></li>
+		<li> <a href="javascript:changeRoom(20876173);">何英源</a></li>
+		<li> <a href="javascript:changeRoom(20936126);">方志坚</a></li>
+		<li> <a href="javascript:changeRoom(20788912);">戴鹏</a></li>
+		<li> <a href="javascript:changeRoom(20926447);">朱靳</a></li>
+	</ul>
 
 	<ul class="messagePannel">
-		<li>
+		<li class="in">
 			<div>
 				<img src="">
 			</div>
 			<span>昵称</span>
 			<span>时间</span>
-			<p></p>
+			<p>这是发送的内容</p>
+		</li>
+		<li class="out">
+			<div>
+				<img src="">
+			</div>
+			<span>昵称</span>
+			<span>时间</span>
+			<p>这是发送的内容</p>
 		</li>
 	</ul>
 
