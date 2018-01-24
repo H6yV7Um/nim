@@ -1,0 +1,29 @@
+*{
+	margin: 0px;
+	border: 0px;
+	padding: 0px;
+
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-ms-box-sizing:border-box;
+	-o-box-sizing:border-box;
+	box-sizing:border-box;
+}
+body{
+	padding: 5px;
+}
+.textContent{
+	width: 100%;
+	height: 100px;
+	resize: none;
+	border:1px solid rgba(0, 0, 0, 0.3);
+}
+.sendTextBtn{
+	padding: 8px 20px;
+    background-color: #03A9F4;
+    color: #fff;
+    margin-top: 10px;
+}
+.sendTextBtn:hover{
+	background-color: #03A9F4;
+}
