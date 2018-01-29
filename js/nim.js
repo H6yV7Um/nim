@@ -1,4 +1,16 @@
+/*
+  20180124
+  author:oneminuter
+*/
 var data = {}
+
+Config.account = getSessionStorage("account");
+Config.token = getSessionStorage("token");
+
+if (Config.account == "" || Config.account == "undefined" || Config.account == null) {
+    window.location.href = "login.html";
+}
+
 
 // 注意这里, 引入的 SDK 文件不一样的话, 你可能需要使用 SDK.NIM.getInstance 来调用接口
 var nim = SDK.NIM.getInstance({

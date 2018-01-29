@@ -6,10 +6,40 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 </head>
 <body>
+	<h3>聊天室登录</h3>
 	<form onsubmit="return dologin(this)">
 		<input type="text" name="mobile"><br/>
 		<input type="password" name="passwd"><br/>
 		<button type="submit">登录</button>
 	</form>
+
+	<script type="text/javascript" src="js/util.js"></script>
+
+	<script type="text/javascript">
+		(function(){
+			//动态加载css,防止浏览器缓存
+			var styles = ['css/login.css'];
+			for (var i = 0; i < styles.length; i++) {
+				link = document.createElement("link");
+				link.rel = "stylesheet";
+				link.type = "text/css"
+				link.href = styles[i] + "?" + (new Date()).valueOf();
+				document.head.appendChild(link);
+			}
+
+
+			//动态加载js，防止浏览器缓存
+			var scriptScrs = ['js/login.js'];
+			var script = null;
+			for (var i = 0; i < scriptScrs.length; i++) {
+				script = document.createElement("script");
+				script.type = "text/javascript";
+				script.src = scriptScrs[i] + "?" + (new Date()).valueOf();
+				document.body.appendChild(script);
+			}
+
+			
+		})()
+	</script>
 </body>
 </html>

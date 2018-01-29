@@ -1,7 +1,18 @@
+/*
+  20180124
+  author:oneminuter
+*/
+
 // 非匿名方式登录
 var chatroom = null;
 function initChatroom(roomid){
   console.log("初始化聊天室");
+
+  document.querySelector(".messagePannel").innerHTML = "";
+  var li = document.createElement("li");
+  li.className = "divid_line";
+  document.querySelector(".messagePannel").appendChild(li);
+
   chatroom = SDK.Chatroom.getInstance({
     appKey: Config.appKey,
     account: Config.account,
@@ -19,6 +30,8 @@ function initChatroom(roomid){
 function onChatroomConnect(chatroom) {
   console.log('进入聊天室', chatroom);
 
+  console.log(nim )
+
   //设置聊天室连接状态
   data.chatroomConnectStatus = true;
   //在线人数
@@ -33,9 +46,11 @@ function onChatroomConnect(chatroom) {
   data.chatroomId = chatroom.chatroom.id;
 
   //界面初始化
-  init()
+  init();
+  //获取历史消息
+  getHistoryMsgs(new Date().valueOf(), 100);
   //事件绑定
-  bind()
+  bind();
 }
 function onChatroomWillReconnect(obj) {
   // 此时说明 `SDK` 已经断开连接, 请开发者在界面上提示用户连接已断开, 而且正在重新建立连接
@@ -85,6 +100,8 @@ function onChatroomMsgs(msgs) {
 
 //界面初始化
 function init() {
+
+  document.querySelector(".divid_line").style.display = "none";
   document.querySelector(".roomCustom").innerHTML = data.chatroomName;
   document.querySelector(".onlineNum").innerHTML = data.chatroomOnlineMemberNum;
   document.querySelector(".avater").querySelector("img").src = data.avatar;
@@ -155,14 +172,14 @@ function buildTextMsg(msg) {
                     '</div>',
                     '<span class="nick">' + msg.fromNick + '</span>',
                     '<span>' + formatTime(msg.time) + '</span>',
-                    '<p>' + msg.text +'</p>'].join("");
+                    '<p>' + buildEmoji(msg.text) +'</p>'].join("");
   }else{
     li.innerHTML = ['<div class="avater">',
                       '<img src="' + msg.fromAvatar + '">',
                     '</div>',
                     '<span class="nick">' + msg.fromNick + '</span>',
                     '<span>' + formatTime(msg.time) + '</span> <br />',
-                    '<p>' + msg.text +'</p>'].join("");
+                    '<p>' + buildEmoji(msg.text) +'</p>'].join("");
   }
   document.querySelector(".messagePannel").appendChild(li);
   li.scrollIntoView(true)
@@ -185,5 +202,53 @@ function selectChatroom(li) {
 }
 
 
+//获取历史聊天记录
+function getHistoryMsgs(timestamp, limit){
+    chatroom.getHistoryMsgs({
+        timetag: timestamp,
+        limit: limit,
+        msgTypes: ['text', 'image'],
+        done: function(error, obj) {
+            // console.log('获取聊天室历史' + (!error?'成功':'失败'), error, obj.msgs);
+            if (error) {
+              return;
+            }
+
+            for (var i = 0; i < obj.msgs.length; i++) {
+              buildHHistoryMsg(obj.msgs[i]);
+            }
+        }
+      })
+
+    //滚动到最底一条数据视图
+    var timer = setTimeout(function(){
+      clearTimeout(timer);
+      var lis = document.querySelectorAll(".messagePannel > li");
+      document.querySelectorAll(".messagePannel > li")[lis.length - 2].scrollIntoView(true);
+    }, 1000);
+}
+
+//构建历史消息ui
+function buildHHistoryMsg(msg) {
+  var li = document.createElement("li");
+  li.className = msg.flow;
+  if (msg.flow == "in") {
+    li.innerHTML = ['<div class="avater">',
+                      '<img src="' + msg.fromAvatar + '">',
+                    '</div>',
+                    '<span class="nick">' + msg.fromNick + '</span>',
+                    '<span>' + formatTime(msg.time) + '</span>',
+                    '<p>' + buildEmoji(msg.text) +'</p>'].join("");
+  }else{
+    li.innerHTML = ['<div class="avater">',
+                      '<img src="' + msg.fromAvatar + '">',
+                    '</div>',
+                    '<span class="nick">' + msg.fromNick + '</span>',
+                    '<span>' + formatTime(msg.time) + '</span> <br />',
+                    '<p>' + buildEmoji(msg.text) +'</p>'].join("");
+  }
+
+  document.querySelector(".messagePannel").insertBefore(li, document.querySelectorAll(".messagePannel > li")[0]);
+}
 
 

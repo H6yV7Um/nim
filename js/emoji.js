@@ -228,7 +228,8 @@ CEmojiEngine.prototype.__bindEvent = function(){
 		target.className = '';
 	});		
 	this._$addEvent(document,'click',function(){
-		that._$hide();
+		// that._$hide();
+		// document.querySelector(".m-emoji-wrapper").style.display = "none";
 	});	
 }
 //查找对应的表情原图，用于显示

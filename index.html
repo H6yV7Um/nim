@@ -14,7 +14,7 @@
 			<img src="">
 		</div>
 		<span class="nick">**</span>
-		<a href="javascript:loginAndlogout();">登录</a>
+		<a href="javascript:loginAndlogout();">退出</a>
 	</header>
 
 	<ul class="roomList">
@@ -28,7 +28,7 @@
 	</ul>
 
 	<ul class="messagePannel">
-		<li class="divid_line">历史聊天记录</li>
+		<li class="divid_line">请先选择直播间</li>
 		<!-- <li class="in">
 			<div class="avater">
 				<img src="">
@@ -47,18 +47,22 @@
 		</li> -->
 	</ul>
 
-	<textarea class="textContent"></textarea>
+	<textarea class="textContent" id="editText"></textarea>
 	<button type="submit" class="sendTextBtn">发送</button>
+	<a class="btn emoji" id="emoji">表情</a>
+	<div id="emojiTag"></div>
 
 	<script type="text/javascript" src="js/NIM_Web_SDK_v4.7.1.js"></script>
 	<script type="text/javascript" src="js/config.js"></script>
+	<script type="text/javascript" src="js/util.js"></script>
+	<script type="text/javascript" src="js/emoji.js"></script>
 	<!-- <script type="text/javascript" src="js/nim.js"></script>
 	<script type="text/javascript" src="js/chatroom.js"></script>
 	<script type="text/javascript" src="js/index.js"></script> -->
 
 	<script type="text/javascript">
 		(function(){
-			//动态加载css
+			//动态加载css,防止浏览器缓存
 			var styles = ['css/index.css'];
 			for (var i = 0; i < styles.length; i++) {
 				link = document.createElement("link");
