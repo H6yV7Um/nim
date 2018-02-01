@@ -100,6 +100,8 @@ function onChatroomMsgs(msgs) {
 
 //界面初始化
 function init() {
+  //初始化直播
+  initPlayer()
 
   document.querySelector(".divid_line").style.display = "none";
   document.querySelector(".roomCustom").innerHTML = data.chatroomName;
@@ -251,4 +253,15 @@ function buildHHistoryMsg(msg) {
   document.querySelector(".messagePannel").insertBefore(li, document.querySelectorAll(".messagePannel > li")[0]);
 }
 
-
+function initPlayer() {
+  var player = new Aliplayer({
+            id: 'J_prismPlayer',
+            width: '100%',
+            autoplay: false,
+            //支持播放地址播放,此播放优先级最高
+            source : 'http://video.futurebots.cn/futurebots/test.flv?auth_key=1548326942-0-0-30949ef0f00cd4499b7cb6b9efabb8f9',
+            isLive: true
+            },function(player){
+                console.log('播放器创建好了。')
+           });
+}
