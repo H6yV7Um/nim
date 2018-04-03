@@ -260,7 +260,7 @@ function initPlayer() {
   if (playerElement != null) {
     document.body.removeChild(playerElement);
   }
-
+  //动态创建播放器，解决切换问题
   playerElement = document.createElement("div");
   playerElement.className = "prism-player";
   playerElement.id = "J_prismPlayer";
