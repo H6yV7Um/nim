@@ -60,7 +60,7 @@ header span{
 }
 .messagePannel{
 	padding: 5px;
-    height: 300px;
+    height: 400px;
     overflow: auto;
     width: 100%;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -165,6 +165,12 @@ header span{
     border-radius: 30px;
 }
 .m-emoji-wrapper{
+	display: none;
+}
+.prism-player{
+	background-color: #607D8B;
+}
+.prism-ErrorMessage{
 	display: none;
 }
 

@@ -6,6 +6,9 @@
 	<!-- <link rel="stylesheet" type="text/css" href="css/index.css"> -->
 </head>
 <body>
+	<!-- 直播 -->
+	<div  class="prism-player" id="J_prismPlayer"></div>
+
 	<header>
 		<span>当前直播间：<i class="roomCustom">**</i>	 </span>
 		<span>在线人数：<i class="onlineNum">**</i>人</span>
@@ -17,8 +20,6 @@
 		<a href="javascript:loginAndlogout();">退出</a>
 	</header>
 
-	<div  class="prism-player" id="J_prismPlayer" style="position: absolute"></div>
-
 	<ul class="roomList">
 		<li> <a href="javascript:changeRoom(19967385);">测试房间</a> </li>
 		<li> <a href="javascript:changeRoom(20805960);">王艳丹</a> </li>
@@ -27,6 +28,8 @@
 		<li> <a href="javascript:changeRoom(20936126);">方志坚</a></li>
 		<li> <a href="javascript:changeRoom(20788912);">戴鹏</a></li>
 		<li> <a href="javascript:changeRoom(20926447);">朱靳</a></li>
+		<li> <a href="javascript:changeRoom(22351367);">官方直播间</a></li>
+		<li> <a href="javascript:changeRoom(22420090);">黑色系</a></li>
 	</ul>
 
 	<ul class="messagePannel">
@@ -58,10 +61,10 @@
 	<script type="text/javascript" src="js/config.js"></script>
 	<script type="text/javascript" src="js/util.js"></script>
 	<script type="text/javascript" src="js/emoji.js"></script>
-	<script charset="utf-8" type="text/javascript" src="https://g.alicdn.com/de/prismplayer/2.5.0/aliplayer-min.js"></script>
-	<!-- <script type="text/javascript" src="js/nim.js"></script>
+	<script type="text/javascript" src="js/nim.js"></script>
 	<script type="text/javascript" src="js/chatroom.js"></script>
-	<script type="text/javascript" src="js/index.js"></script> -->
+	<script type="text/javascript" src="js/index.js"></script>
+	<script charset="utf-8" type="text/javascript" src="https://g.alicdn.com/de/prismplayer/2.5.0/aliplayer-min.js"></script>
 
 	<script type="text/javascript">
 		(function(){
@@ -77,16 +80,16 @@
 
 
 			//动态加载js，防止浏览器缓存
-			var scriptScrs = ['js/nim.js',
-								'js/chatroom.js',
-								'js/index.js'];
-			var script = null;
-			for (var i = 0; i < scriptScrs.length; i++) {
-				script = document.createElement("script");
-				script.type = "text/javascript";
-				script.src = scriptScrs[i] + "?" + (new Date()).valueOf();
-				document.body.appendChild(script);
-			}
+			// var scriptScrs = ['js/nim.js',
+			// 					'js/chatroom.js',
+			// 					'js/index.js'];
+			// var script = null;
+			// for (var i = 0; i < scriptScrs.length; i++) {
+			// 	script = document.createElement("script");
+			// 	script.type = "text/javascript";
+			// 	script.src = scriptScrs[i] + "?" + (new Date()).valueOf();
+			// 	document.body.appendChild(script);
+			// }
 
 			
 		})()

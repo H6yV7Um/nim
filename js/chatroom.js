@@ -30,8 +30,6 @@ function initChatroom(roomid){
 function onChatroomConnect(chatroom) {
   console.log('进入聊天室', chatroom);
 
-  console.log(nim )
-
   //设置聊天室连接状态
   data.chatroomConnectStatus = true;
   //在线人数
@@ -44,6 +42,8 @@ function onChatroomConnect(chatroom) {
   data.avatar = chatroom.member.avatar;
   //聊天室房间号
   data.chatroomId = chatroom.chatroom.id;
+  //直播拉流地址
+  data.broadcastUrl = chatroom.chatroom.broadcastUrl;
 
   //界面初始化
   init();
@@ -253,14 +253,35 @@ function buildHHistoryMsg(msg) {
   document.querySelector(".messagePannel").insertBefore(li, document.querySelectorAll(".messagePannel > li")[0]);
 }
 
+//初始化直播
 function initPlayer() {
+  //清楚原有的video
+  document.querySelector(".prism-player").innerHTML = "";
+  var urls = data.broadcastUrl.split(",");
+  var source = "";
+  for(var i = 0; i < urls.length; i++) {
+    if (urls[i].indexOf('m3u8') != -1) {
+      source = urls[i];
+      break;
+    }
+  }
   var player = new Aliplayer({
             id: 'J_prismPlayer',
             width: '100%',
-            autoplay: false,
+            autoplay: true,
+            isLive: true,
+            playsinline: true,
+            controlBarVisibility: 'always',
+            useH5Prism: true,
+            useFlashPrism: false,
+            x5_video_position: 'top',
+            width: '100%',
+            height: '300px',
+            x5_type: 'h5', //通过 video 属性 “x5-video-player-type” 声明启用同层H5播放器，支持的值：h5 https://x5.tencent.com/tbs/guide/video.html
             //支持播放地址播放,此播放优先级最高
-            source : 'http://video.futurebots.cn/futurebots/test.flv?auth_key=1548326942-0-0-30949ef0f00cd4499b7cb6b9efabb8f9',
-            isLive: true
+            cover: 'http://liveroom-img.oss-cn-qingdao.aliyuncs.com/logo.png',
+            source : source,
+            
             },function(player){
                 console.log('播放器创建好了。')
            });
