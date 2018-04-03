@@ -284,6 +284,7 @@ function initPlayer() {
             useFlashPrism: false,
             x5_video_position: 'top',
             width: '75%',
+            height:'100%',
             x5_type: 'h5', //通过 video 属性 “x5-video-player-type” 声明启用同层H5播放器，支持的值：h5 https://x5.tencent.com/tbs/guide/video.html
             //支持播放地址播放,此播放优先级最高
             cover: 'http://liveroom-img.oss-cn-qingdao.aliyuncs.com/logo.png',
