@@ -256,7 +256,16 @@ function buildHHistoryMsg(msg) {
 //初始化直播
 function initPlayer() {
   //清楚原有的video
-  document.querySelector(".prism-player").innerHTML = "";
+  var playerElement = document.querySelector(".prism-player");
+  if (playerElement != null) {
+    document.body.removeChild(playerElement);
+  }
+
+  playerElement = document.createElement("div");
+  playerElement.className = "prism-player";
+  playerElement.id = "J_prismPlayer";
+  document.body.insertBefore(playerElement, document.body.childNodes[0]);
+
   var urls = data.broadcastUrl.split(",");
   var source = "";
   for(var i = 0; i < urls.length; i++) {
@@ -267,7 +276,6 @@ function initPlayer() {
   }
   var player = new Aliplayer({
             id: 'J_prismPlayer',
-            width: '100%',
             autoplay: true,
             isLive: true,
             playsinline: true,
