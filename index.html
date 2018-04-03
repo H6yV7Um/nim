@@ -8,54 +8,55 @@
 <body>
 	<!-- 直播 -->
 	<div  class="prism-player" id="J_prismPlayer"></div>
+	<setion class="container">
+		<header>
+			<span>当前直播间：<i class="roomCustom">**</i>	 </span>
+			<span>在线人数：<i class="onlineNum">**</i>人</span>
 
-	<header>
-		<span>当前直播间：<i class="roomCustom">**</i>	 </span>
-		<span>在线人数：<i class="onlineNum">**</i>人</span>
-
-		<div class="avater">
-			<img src="">
-		</div>
-		<span class="nick">**</span>
-		<a href="javascript:loginAndlogout();">退出</a>
-	</header>
-
-	<ul class="roomList">
-		<li> <a href="javascript:changeRoom(19967385);">测试房间</a> </li>
-		<li> <a href="javascript:changeRoom(20805960);">王艳丹</a> </li>
-		<li> <a href="javascript:changeRoom(20716567);">王天</a></li>
-		<li> <a href="javascript:changeRoom(20876173);">何英源</a></li>
-		<li> <a href="javascript:changeRoom(20936126);">方志坚</a></li>
-		<li> <a href="javascript:changeRoom(20788912);">戴鹏</a></li>
-		<li> <a href="javascript:changeRoom(20926447);">朱靳</a></li>
-		<li> <a href="javascript:changeRoom(22351367);">官方直播间</a></li>
-		<li> <a href="javascript:changeRoom(22420090);">黑色系</a></li>
-	</ul>
-
-	<ul class="messagePannel">
-		<li class="divid_line">请先选择直播间</li>
-		<!-- <li class="in">
 			<div class="avater">
 				<img src="">
 			</div>
-			<span class="nick">昵称</span>
-			<span>时间</span>
-			<p>这是发送的内容</p>
-		</li>
-		<li class="out">
-			<div class="avater">
-				<img src="">
-			</div>
-			<span class="nick">昵称</span>
-			<span>时间</span>
-			<p>这是发送的内容</p>
-		</li> -->
-	</ul>
+			<span class="nick">**</span>
+			<a href="javascript:loginAndlogout();">退出</a>
+		</header>
 
-	<textarea class="textContent" id="editText"></textarea>
-	<button type="submit" class="sendTextBtn">发送</button>
-	<a class="btn emoji" id="emoji">表情</a>
-	<div id="emojiTag"></div>
+		<ul class="roomList">
+			<li> <a href="javascript:changeRoom(19967385);">测试房间</a> </li>
+			<li> <a href="javascript:changeRoom(20805960);">王艳丹</a> </li>
+			<li> <a href="javascript:changeRoom(20716567);">王天</a></li>
+			<li> <a href="javascript:changeRoom(20876173);">何英源</a></li>
+			<li> <a href="javascript:changeRoom(20936126);">方志坚</a></li>
+			<li> <a href="javascript:changeRoom(20788912);">戴鹏</a></li>
+			<li> <a href="javascript:changeRoom(20926447);">朱靳</a></li>
+			<li> <a href="javascript:changeRoom(22351367);">官方直播间</a></li>
+			<li> <a href="javascript:changeRoom(22420090);">黑色系</a></li>
+		</ul>
+
+		<ul class="messagePannel">
+			<li class="divid_line">请先选择直播间</li>
+			<!-- <li class="in">
+				<div class="avater">
+					<img src="">
+				</div>
+				<span class="nick">昵称</span>
+				<span>时间</span>
+				<p>这是发送的内容</p>
+			</li>
+			<li class="out">
+				<div class="avater">
+					<img src="">
+				</div>
+				<span class="nick">昵称</span>
+				<span>时间</span>
+				<p>这是发送的内容</p>
+			</li> -->
+		</ul>
+
+		<textarea class="textContent" id="editText"></textarea>
+		<button type="submit" class="sendTextBtn">发送</button>
+		<a class="btn emoji" id="emoji">表情</a>
+		<div id="emojiTag"></div>
+	</setion>
 
 	<script type="text/javascript" src="js/NIM_Web_SDK_v4.7.1.js"></script>
 	<script type="text/javascript" src="js/config.js"></script>

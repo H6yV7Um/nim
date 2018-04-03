@@ -169,9 +169,13 @@ header span{
 }
 .prism-player{
 	background-color: #607D8B;
+	float: left;
+	width: 75%;
 }
-.prism-ErrorMessage{
-	display: none;
+.container{
+	float: right;
+	width: 25%;
+	padding-left:5px;
 }
 
 
