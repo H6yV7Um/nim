@@ -42,15 +42,11 @@ var page = {
 		],
 	},
 
-//'http://app.arnoldlabs.com/live/msg/getlist?liveId=333&lastMId=0&uId=a1f5121e8fee25f516642471' //聊天室消息地址
-
 	controller: function(){
 		page.init();
 		page.bind();
 		//获取直播列表信息
 		page.getLiveList();
-		//获取聊天室消息
-		page.getChatMsg();
 	},
 
 	init: function(){
@@ -85,9 +81,6 @@ var page = {
 			}
 		}
 		ajaxGet(obj);
-		var timer = setTimeout(function(){
-			page.getChatMsg();
-		}, 1000);
 	},
 
 	//处理聊天室消息
@@ -99,11 +92,17 @@ var page = {
 				case 1: //普通消息
 					classname = "customerMsg";
 					break;
+				case 2: //横幅
+					classname = "broadcastMsg";
+					break;
+				case 3: //盈利播报
+					classname = "broadcastMsg";
+					break;
 				case 4: //系统消息
 					classname = "systemMsg";
 					break;
 				case 7: //领取红包代金券
-					classname = "broadcastMsg";
+					classname = "voucherMsg";
 					break;
 				default:
 			}
@@ -111,7 +110,7 @@ var page = {
 			var li = document.createElement("li");
 			li.className = classname;
 			li.innerHTML = ['<span>' + data[i].nickName + '</span>',
-							'<p>' + data[i].content + '</p>'].join("");
+							'<p>' + data[i].content + (!data[i].profitNum ? '':('<span>' + data[i].profitNum + '<span>')) + '</p>'].join("");
 
 			document.querySelector(".mssagePannel").appendChild(li);
 			li.scrollIntoView();
@@ -128,8 +127,6 @@ var page = {
 			},
 			success: function(res) {
 				if(200 == res.error.errno) {
-					//设置liveId
-					page.data.liveId = res.liveList.live[0].liveId;
 					//设置直播间信息
 					page.setLiveInfo(res.liveList.live);
 				} else {
@@ -144,12 +141,19 @@ var page = {
 		ajaxGet(obj);
 	},
 	setLiveInfo: function(data){
+		var isSetLiveId = false;
 		for (var i = 0; i < data.length; i++) {
 			var liveInfo = {
-				status: data[i].status, //1 正在直播，0 没有直播
+				status: data[i].status,
 				liveId: data[i].liveId,
 				rtmpList:[]
 			}
+			//设置liveId
+			if (!isSetLiveId && data[i].status == 2) {
+				page.data.liveId = data[i].liveId;
+				isSetLiveId = true;
+			}
+
 			var rtmpList = [];
 			for (var j = 0; j < data[i].rtmpList.rtmp.length; j++) {
 				var rtmp = {
@@ -166,6 +170,11 @@ var page = {
 		}
 		//开始播放
 		page.playLive();
+		//获取聊天室消息
+		page.getChatMsg();
+		var timer = setInterval(function(){
+			page.getChatMsg();
+		}, 1000);
 	},
 	//播放直播
 	playLive: function(){
@@ -285,13 +294,6 @@ var page = {
 
 		ajaxGet(obj);
 	},
-
-	//绘制消息ui
-	buildMsgUI: function(text) {
-		var li = document.createElement("li");
-		li.innerHTML = '<p>' + text + '</p>';
-		document.querySelector(".mssagePannel").appendChild(li);
-	}
 }
 page.controller();
 

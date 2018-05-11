@@ -69,7 +69,6 @@ a{
     border-radius: 4px;
 }
 .mssagePannel li p{
-	background-color: rgba(0, 0, 0, 0.05);
     display: table;
     border-radius: 4px;
     display: inline-block;
@@ -92,6 +91,11 @@ a{
 	background-color: rgba(206, 206, 206, 0);
     font-size: 18px;
     font-weight: 600;
+    display: block;
+    margin-left: 0px;
+}
+.mssagePannel li.voucherMsg span,.mssagePannel li.voucherMsg p{
+	color: rgb(255, 0, 0);
 }
 .mssagePannel li.broadcastMsg span,.mssagePannel li.broadcastMsg p{
 	color: rgb(255, 0, 0);
