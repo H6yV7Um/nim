@@ -1,0 +1,66 @@
+futurebots官方直播地址：
+http://video.futurebots.cn/futurebots/futurebots.m3u8?auth_key=1552469724-0-0-99257a22e53c9e69792185f80eee5453
+rtmp://video.futurebots.cn/futurebots/futurebots?auth_key=1552469724-0-0-adee211a97f1a24cc4fa71b810a52b80
+http://video.futurebots.cn/futurebots/futurebots.flv?auth_key=1552469724-0-0-e1c79bedc446fd72850f9d106e16239e
+
+
+测试
+22420090
+推流：
+rtmp://video-center-bj.alivecdn.com/futurebots/futurebots2?vhost=video.futurebots.cn&auth_key=1552470395-0-0-fb41abe39cc119d99d1ef67f9695e99e
+拉流：
+http://video.futurebots.cn/futurebots/futurebots2.m3u8?auth_key=1552470395-0-0-7085998f69625a5dfb3fe9c61ad2a196
+rtmp://video.futurebots.cn/futurebots/futurebots2?auth_key=1552470395-0-0-fb41abe39cc119d99d1ef67f9695e99e
+http://video.futurebots.cn/futurebots/futurebots2.flv?auth_key=1552470395-0-0-27ddf2aed46184faebf1b9ff4ac919dc
+
+
+网易云信：
+video/mp4
+video/x-flv
+rtmp/flv
+application/x-mpegURL
+
+pc（手机模式） :
+application/x-mpegURL
+	m3u8
+
+h5(wechat)
+video/mp4
+	rtmp
+	m3u8
+application/x-mpegURL
+	m3u8
+	rtmp
+
+h5(chrome)
+application/x-mpegURL
+	m3u8
+video/mp4
+	m3u8
+
+-----------------------------------
+阿里云：
+pc:
+	m3u8
+	rtmp
+	flv
+
+
+
+蚂蚁拉流地址：
+萌萌：   rtmp://live.ylteb.com/antlive/4b5bc55deded50e220fa3be7b9ee551b
+瓜瓜：   rtmp://live.ylteb.com/antlive/53d8becb86073186679a35ce2173a736
+丹丹：   rtmp://live.ylteb.com/antlive/59a86ce6260479c3e557153ae840c9ea
+熙熙：   rtmp://live.ylteb.com/antlive/e90bcbcb99e495e292ac5a7d10eb286c
+君君：   rtmp://live.ylteb.com/antlive/1de7a5fc266b18b6e86d912d9762aae3
+王天：   rtmp://live.ylteb.com/antlive/f892268513d42318f9cb2e01c1513156
+方志坚： rtmp://live.ylteb.com/antlive/30344d9eeb4a4a6e0e5edd79911d444c
+戴鹏：   rtmp://live.ylteb.com/antlive/52fc302a3649fd83b7150d26d057dad6
+朱靳：   rtmp://live.ylteb.com/antlive/cb9dcfe81a4fe1c61874300c9e992585
+
+
+
+
+
+
+

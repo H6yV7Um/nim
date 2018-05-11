@@ -20,15 +20,23 @@ function dologin(form) {
 	var req = {
 		url: "/v1/user/login",
 		method: "POST",
+		header: {
+			"Api-Accept":"application/futurebots.cn+json;version=1",
+			"device":"html"
+		},
 		data: JSON.stringify({
 			mobile: mobile + "",
 			passwd: passwd
 		}),
-		success: function(data) {
-			setSessionStorage("token", data.data.token);
+		success: function(res) {
+			if (res.code == 200) {
+				setSessionStorage("token", res.data.token);
+			} else {
+				alert(res.message);
+			}
 		},
-		error: function(error) {
-			alert(error.message);
+		error: function(err) {
+			console.log("网络错误:", err);
 		}
 	}
 
@@ -56,17 +64,23 @@ function getNeteaseAccount(token) {
 		url: "/v1/netease/user/account",
 		method: "GET",
 		header: {
-			token: token
+			"Api-Accept":"application/futurebots.cn+json;version=1",
+			"device":"html",
+			"token": token
 		},
-		success: function(data) {
-			setSessionStorage("account", data.data.accid);
-			//覆盖用户token
-			setSessionStorage("token", data.data.token);
+		success: function(res) {
+			if (res.code == 200) {
+				setSessionStorage("account", res.data.accid);
+				//覆盖用户token
+				setSessionStorage("token", res.data.token);
 
-			window.location.href = "index.html";
+				window.location.href = "index.html";
+			} else {
+				alert(res.message);
+			}
 		},
-		error: function(error) {
-			alert(error.message);
+		error: function(err) {
+			console.log("网络错误:", err);
 		}
 	}
 	ajaxGet(req);

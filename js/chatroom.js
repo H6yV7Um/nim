@@ -269,7 +269,7 @@ function initPlayer() {
   var urls = data.broadcastUrl.split(",");
   var source = "";
   for(var i = 0; i < urls.length; i++) {
-    if (urls[i].indexOf('flv') != -1) {
+    if (urls[i].indexOf('rtmp') != -1) {
       source = urls[i];
       break;
     }

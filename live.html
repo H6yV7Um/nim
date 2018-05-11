@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>直播测试</title>
+	<link rel="stylesheet" type="text/css" href="sdk/neplayer.min.css">
+
+</head>
+<body>
+	<video id="my-video" class="video-js vjs-big-play-centered" x-webkit-airplay="allow" controls poster="" preload="auto" x5-playsinline="true" webkit-playsinline="true" playsinline="true">
+	    <source src="sdk/video-js.swf" type="video/mp4">
+	</video>
+
+<script src="sdk/neplayer.min.js"></script>
+<script type="text/javascript">
+	(function () {
+		var data = {};
+
+		var myPlayer = neplayer("my-video", {
+			"controls": true, //是否显示控制条
+		    "autoplay": false, //是否自动播放(ios不支持自动播放)
+
+		    /*预加载选项*/
+		    "preload": "auto",
+		    /*
+		    'auto'预加载视频（需要浏览器允许）;
+		    'metadata'仅预加载视频meta信息;
+		    'none'不预加载;
+		    */
+
+		    "poster": "", //视频播放前显示的图片
+		    "loop": true, //是否循环播放
+		    "width": 350, //设置播放器宽度
+		    "height": 200, //设置播放器高度
+
+		    "techOrder": ["flash", "html5"], //优先使用的播放模式
+		    "streamTimeoutTime": 30 * 1000, //拉流超时时间,默认30s
+		    /*设置播放器控件*/
+		    controlBar: { 
+		        playToggle: false
+		    }
+		    /*
+		    //设置不显示大播放按钮
+		    bigPlayButton:false,
+		     */
+		    /*默认播放器控件列表
+		    posterImage
+		    textTrackDisplay
+		    loadingSpinner
+		    bigPlayButton
+		    controlBar
+		        playToggle
+		        volumeMenuButton
+		        currentTimeDisplay
+		        timeDivider
+		        durationDisplay
+		        progressControl
+		            seekBar
+		                loadProgressBar
+		                mouseTimeDisplay
+		                playProgressBar
+		        liveDisplay
+		        remainingTimeDisplay
+		        customControlSpacer
+		        playbackRateMenuButton
+		        chaptersButton
+		        descriptionsButton
+		        subtitlesButton
+		        captionsButton
+		        audioTrackButton
+		        fullscreenToggle
+		    */
+		}, function(){
+		  	// 当播放器初始化完成时运行的回调函数
+		  	console.log("player初始化完毕");
+			myPlayer.setDataSource([
+			{type:"application/x-mpegURL", src: "http://video.futurebots.cn/futurebots/futurebots2.m3u8?auth_key=1552470395-0-0-7085998f69625a5dfb3fe9c61ad2a196"}
+			]);
+			// myPlayer.play();
+		});
+
+		// var count = 0;
+
+		// setInterval(function(){
+		// 	myPlayer.setDataSource([
+		// 	{type:"application/x-mpegURL", src: "http://video.futurebots.cn/futurebots/futurebots2.flv?auth_key=1552470395-0-0-27ddf2aed46184faebf1b9ff4ac919dc"}
+		// 	]);
+		// 	myPlayer.play();
+		// 	console.log("定时器设置数据源", count++);
+		// }, 3000)
+		
+
+		myPlayer.onError(function(err){
+		    console.log(err.errCode);
+		    console.log(err.errMsg);
+		});
+
+		//微信自动播放
+		// document.addEventListener('WeixinJSBridgeReady', function() { 
+		// 	document.getElementById('my-video').play(); 
+		// }, false);
+
+	})()
+</script>
+</body>
+</html>

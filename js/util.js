@@ -48,18 +48,17 @@ function ajaxPost(obj) {
 	xhr.withCredentials = true;
 
 	xhr.addEventListener("readystatechange", function () {
-		if (this.readyState == 4) {
-			var response = JSON.parse(this.responseText);
-			if (response.code == 200) {
-				obj.success(response)
+		if (4 == this.readyState) {
+			if (200 == this.status) {
+				var response = JSON.parse(this.responseText);
+				obj.success(response);
 			} else {
-				obj.error(response)
+				obj.error(err)
 			}
 		}
 	});
 	xhr.open(obj.method,obj.url);
-	xhr.setRequestHeader("Api-Accept", "application/futurebots.cn+json;version=1");
-	xhr.setRequestHeader("device", "html");
+	//设置header
 	if (obj.header != null || obj.header != "" || obj.header != "undefined") {
 		for (var key in obj.header) {
 			xhr.setRequestHeader(key, obj.header[key]);
@@ -78,23 +77,22 @@ function ajaxGet(obj) {
 	xhr.withCredentials = true;
 
 	xhr.addEventListener("readystatechange", function () {
-		if (this.readyState == 4) {
-
-			var response = JSON.parse(this.responseText);
-			if (response.code == 200) {
-				obj.success(response)
+		if (4 == this.readyState) {
+			if (200 == this.status) {
+				var response = JSON.parse(this.responseText);
+				obj.success(response);
 			} else {
-				obj.error(response)
+				obj.error(err)
 			}
 		}
 	});
 
 	//拼接参数
-	var reqData = "&";
+	var reqData = "";
 	for(var key in obj.data) {
-		reqData += key + "=" + obj.data[key];
+		reqData += "&" + key + "=" + obj.data[key];
 	}
-	//去掉以一个&
+	//去掉第一个&
 	if (reqData.length > 1) {
 		reqData = reqData.slice(1);
 
@@ -102,8 +100,7 @@ function ajaxGet(obj) {
 	}
 
 	xhr.open(obj.method,obj.url, true);
-	xhr.setRequestHeader("Api-Accept", "application/futurebots.cn+json;version=1");
-	xhr.setRequestHeader("device", "html");
+	//设置header
 	if (obj.header != null || obj.header != "" || obj.header != "undefined") {
 		for (var key in obj.header) {
 			xhr.setRequestHeader(key, obj.header[key]);

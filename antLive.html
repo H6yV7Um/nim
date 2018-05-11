@@ -1,0 +1,60 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	 <meta name="viewport" content="width=device-width, initial-scale=0.0, maximum-scale=0.0, user-scalable=no">
+	<title>蚂蚁直播</title>
+	<!-- <link rel="stylesheet" type="text/css" href="css/antLive.css"> -->
+	<script type="text/javascript">
+		(function(){
+			//动态加载css,防止浏览器缓存
+			var styles = ['css/antLive.css'];
+			for (var i = 0; i < styles.length; i++) {
+				link = document.createElement("link");
+				link.rel = "stylesheet";
+				link.type = "text/css"
+				link.href = styles[i] + "?" + (new Date()).valueOf();
+				document.head.appendChild(link);
+			}
+		})()
+	</script>
+</head>
+<body>
+	<!-- 直播 -->
+	<section class="live_container">
+		<div  class="prism-player left_player" id="J_prismPlayer"></div>
+		<div  class="prism-player right_player" id="J_prismPlayer"></div>
+	</section>
+	
+	<section class="msg_pannel">
+		<ul class="mssagePannel">
+			<!-- <li>
+				<i></i>
+				<span></span>
+				<p></p>
+			</li> -->
+		</ul>
+
+		<section class="edit_container">
+			<textarea class="textContent" id="editText"></textarea>
+			<button type="submit" class="sendTextBtn">发送</button>
+	</section>
+		
+
+	<script charset="utf-8" type="text/javascript" src="https://g.alicdn.com/de/prismplayer/2.5.0/aliplayer-min.js"></script>
+	<script type="text/javascript" src="js/util.js"></script>
+	<!-- <script type="text/javascript" src="js/antLive.js"></script> -->
+	<script type="text/javascript">
+		(function(){
+			//动态加载js，防止浏览器缓存
+			var scriptScrs = ['js/antLive.js'];
+			var script = null;
+			for (var i = 0; i < scriptScrs.length; i++) {
+				script = document.createElement("script");
+				script.type = "text/javascript";
+				script.src = scriptScrs[i] + "?" + (new Date()).valueOf();
+				document.body.appendChild(script);
+			}
+		})()
+	</script>
+</body>
+</html>

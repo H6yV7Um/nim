@@ -1,9 +1,22 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>futurebots.cn</title>
+	<title>沸点财经直播</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 	<!-- <link rel="stylesheet" type="text/css" href="css/index.css"> -->
+	<script type="text/javascript">
+		(function(){
+			//动态加载css,防止浏览器缓存
+			var styles = ['css/index.css'];
+			for (var i = 0; i < styles.length; i++) {
+				link = document.createElement("link");
+				link.rel = "stylesheet";
+				link.type = "text/css"
+				link.href = styles[i] + "?" + (new Date()).valueOf();
+				document.head.appendChild(link);
+			}
+		})()
+	</script>
 </head>
 <body>
 	<!-- 直播 -->
@@ -66,17 +79,6 @@
 
 	<script type="text/javascript">
 		(function(){
-			//动态加载css,防止浏览器缓存
-			var styles = ['css/index.css'];
-			for (var i = 0; i < styles.length; i++) {
-				link = document.createElement("link");
-				link.rel = "stylesheet";
-				link.type = "text/css"
-				link.href = styles[i] + "?" + (new Date()).valueOf();
-				document.head.appendChild(link);
-			}
-
-
 			//动态加载js，防止浏览器缓存
 			var scriptScrs = ['js/nim.js',
 								'js/chatroom.js',
@@ -88,8 +90,6 @@
 				script.src = scriptScrs[i] + "?" + (new Date()).valueOf();
 				document.body.appendChild(script);
 			}
-
-			
 		})()
 	</script>
 </body>

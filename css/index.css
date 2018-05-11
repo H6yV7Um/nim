@@ -177,6 +177,9 @@ header span{
 	width: 25%;
 	padding-left:5px;
 }
+.prism-ErrorMessage{
+	display: none;
+}
 
 
 
